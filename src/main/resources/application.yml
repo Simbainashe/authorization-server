@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:uaa_server
+    username: developer
+    password: pass123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+server:
+  port: 8063
+
+security:
+  oauth2:
+    client:
+      clientId: uaa-service
+      clientSecret: 'Testing4#'
+      scope: read,write
+    resource:
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgaKixqVG0FRVdZ8gAgVp
+          VCn4FCWua1IUOoQerpcAFqL+WO2/2ImSUHk2gdejdcMg15wXYQX4eO2KSA+vGleN
+          tWrnF5GkSwaAHqEp5fj7wqJajuhkR9wlj0+ab2jmuLBp/c6DhN4yZL1N7trOOpJZ
+          IP2HyqhkeBS08Iygc2wI+/w/wlARglZ0jyUb+oexYOhSrzedKHpFlFPsxs4I1Ana
+          7z/psspZcl6G6yAzMnZxbTRbEVaqAQBDYc0NGx35GJhy2voB9rgk5IdWAehPhtAP
+          RXfg2fD3YF3vbS1lziaI0/bnb/yLxcq6jQC2Rh2llLz+xSyO5JQxkv/GaVz2kMaD
+          FQIDAQAB
+          -----END PUBLIC KEY-----
+      id: ${security.oauth2.client.clientId}
+superuser:
+  username: admin
+  password: password@123
+  email: factm@example.com
+oauth2:
+  clients:
+    admin-portal:
+      id: admin-portal
+      secret: 'Testing4#'
+      redirectUri: http://127.0.0.1:8062/login
+      autoApprove: true
+      resourceId: ${oauth2.clients.admin-portal.id}
+
+jwt:
+  keystore:
+    password: pass123
+
+
