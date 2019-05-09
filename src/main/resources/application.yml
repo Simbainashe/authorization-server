@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:uaa_server
+    url: jdbc:postgresql://127.0.0.1:5432/uaa_server
     username: developer
     password: pass123
   jpa:
